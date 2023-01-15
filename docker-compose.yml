@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  configuration:
+    build: ./configService
+    container_name: "wallet_config_app"
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./configService:/usr/src/app
+    ports:
+      - "10000:8000"
+    # depends_on:
+    # #   - dbCo
+    #   - dbAuth
+    # #   - dbWallet
+  
+  # dbAuth:
+  #   image: postgres
+  #   env_file:
+  #     - ./configService/dbAuth.env
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data/
+  
+#   dbCo:
+#     image: postgres
+#     env_file:
+#       - ./configService/dbConfig.env
+#     volumes:
+#       - postgres_data_config:/var/lib/postgresql/data/
+  
+#   dbWallet:
+#     image: postgres
+#     env_file:
+#       - ./configService/dbWallet.env
+#     volumes:
+#       - postgres_data_wallet:/var/lib/postgresql/data/
+
+# volumes:
+#   postgres_data:
+#   postgres_data_config:
+#   postgres_data_wallet:
